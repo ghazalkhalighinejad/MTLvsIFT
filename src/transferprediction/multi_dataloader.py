@@ -21,8 +21,8 @@ import torch.nn.functional as F
 import torch.utils.data as data
 import numpy as np
 
-from transferprediction.settings import METRICS_OF_CHOICE
-from transferprediction.utils import flatten
+from src.transferprediction.settings import METRICS_OF_CHOICE
+from src.transferprediction.utils import flatten
 
 
 def empty_zip_longest(data_to_zip):

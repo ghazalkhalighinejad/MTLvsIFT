@@ -76,13 +76,13 @@ try:
 except ImportError:
     from tensorboardX import SummaryWriter
 
-from transferprediction.huggingface_extensions import (
+from src.transferprediction.huggingface_extensions import (
     RobertaForSequenceClassificationGLUE,
     BertForSequenceClassificationGLUE,
 )
-from transferprediction.multi_dataloader import MTLDataset, MTLRandomSampler
+from src.transferprediction.multi_dataloader import MTLDataset, MTLRandomSampler
 
-from transferprediction.utils import (
+from src.transferprediction.utils import (
     processors,
     output_modes,
     tasks_num_labels,
@@ -299,16 +299,16 @@ def train(args, train_dataset, model, tokenizer):
             torch.load(os.path.join(args.model_name_or_path, "scheduler.pt"))
         )
 
-    if args.fp16:
-        try:
-            from apex import amp
-        except ImportError:
-            raise ImportError(
-                "Please install apex from https://www.github.com/nvidia/apex to use fp16 training."
-            )
-        model, optimizer = amp.initialize(
-            model, optimizer, opt_level=args.fp16_opt_level
-        )
+    # if args.fp16:
+    #     try:
+    #         from apex import amp
+    #     except ImportError:
+    #         raise ImportError(
+    #             "Please install apex from https://www.github.com/nvidia/apex to use fp16 training."
+    #         )
+    #     model, optimizer = amp.initialize(
+    #         model, optimizer, opt_level=args.fp16_opt_level
+    #     )
 
     # multi-gpu training (should be after apex fp16 initialization)
     if args.n_gpu > 1:

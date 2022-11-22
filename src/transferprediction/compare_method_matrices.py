@@ -13,7 +13,7 @@ import seaborn as sns
 from scipy.stats import ttest_ind_from_stats, linregress
 from matplotlib.lines import Line2D
 
-from transferprediction.settings import METRICS_OF_CHOICE, LOWER_TO_UPPER_TASKS
+from src.transferprediction.settings import METRICS_OF_CHOICE, LOWER_TO_UPPER_TASKS
 
 pd.set_option("display.float_format", lambda x: "%.4f" % x)
 
